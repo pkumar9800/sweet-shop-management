@@ -43,7 +43,7 @@ describe('Auth Endpoints', () => {
             expect(res.body).toHaveProperty('message', 'User registered successfully');
             
             // Verify user is actually in DB
-            const User = import('../src/models/user.model.js');
+            const {default: User} = await import('../src/models/user.model.js');
             const user = await User.findOne({ username: 'Candyman' });
             expect(user).toBeTruthy();
         });
