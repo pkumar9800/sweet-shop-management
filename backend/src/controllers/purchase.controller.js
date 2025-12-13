@@ -5,9 +5,8 @@ import { createPaymentOrder } from '../utils/payment.js';
 export const purchaseSweet = async (req, res) => {
   try {
     const { id } = req.params;
-    const { quantity = 1 } = req.body; // Default to 1 if not sent
+    const { quantity = 1 } = req.body; 
 
-    // Validation: Quantity must be positive
     if (quantity <= 0) {
       return res.status(400).json({ message: 'Quantity must be positive' });
     }
@@ -26,13 +25,11 @@ export const purchaseSweet = async (req, res) => {
         return res.status(400).json({ message: `Insufficient stock. Only ${sweet.quantity} left.` });
     }
 
-    // 3. Initiate Payment (Razorpay)
+    // 3. Initiate Payment
     const totalPrice = sweet.price * quantity;
-    
-    // Create Razorpay order (or simulation)
     const paymentOrder = await createPaymentOrder(totalPrice);
 
-    // 4. Create Order Record
+    // 4. Create Order
     await Order.create({
         user: req.user._id,
         sweet: sweet._id,

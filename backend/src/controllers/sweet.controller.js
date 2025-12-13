@@ -86,3 +86,36 @@ export const getAllSweets = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+export const restockSweet = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { quantity } = req.body;
+
+    // Validation
+    if (!quantity || quantity <= 0) {
+      return res.status(400).json({ message: 'Quantity must be a positive number' });
+    }
+
+    // Find and Update (Atomic increment)
+    // { new: true } returns the updated document
+    const sweet = await Sweet.findByIdAndUpdate(
+      id,
+      { $inc: { quantity: quantity } }, 
+      { new: true }
+    );
+
+    if (!sweet) {
+      return res.status(404).json({ message: 'Sweet not found' });
+    }
+
+    res.status(200).json({
+      message: 'Restock successful',
+      newQuantity: sweet.quantity
+    });
+
+  } catch (error) {
+    console.error('Restock Error:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};

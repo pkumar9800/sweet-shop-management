@@ -22,11 +22,13 @@ let userToken;
 beforeAll(async () => {
     mongoServer = await MongoMemoryServer.create();
     await mongoose.connect(mongoServer.getUri());
+    jest.spyOn(console, 'error').mockImplementation(() => {});
 });
 
 afterAll(async () => {
     await mongoose.disconnect();
     await mongoServer.stop();
+    console.error.mockRestore();
 });
 
 afterEach(async () => {
