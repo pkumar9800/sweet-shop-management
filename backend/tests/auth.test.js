@@ -2,6 +2,7 @@ import request from "supertest";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import app from "../src/app";
+import User from '../src/models/user.model.js';
 
 let mongoServer;
 
@@ -43,7 +44,6 @@ describe("Auth Endpoints", () => {
       );
 
       // Verify user is actually in DB
-      const { default: User } = await import("../src/models/user.model.js");
       const user = await User.findOne({ username: "Candyman" });
       expect(user).toBeTruthy();
     });
@@ -131,7 +131,6 @@ describe("Auth Endpoints", () => {
     // Setup: Create a user to log in with
     beforeEach(async () => {
       // We rely on the Model's pre-save hook to hash this password!
-      const User = (await import("../src/models/user.model.js")).User;
       await User.create({
         username: "validUser",
         email: "valid@example.com",
