@@ -19,6 +19,7 @@ You may notice that the **Frontend (UI)** is currently missing from this reposit
 
 **My Humble Request:** 
 I kindly ask that you evaluate my technical proficiency based on the **Backend architecture, API security, and Test Coverage** provided here. I hope you might grant some flexibility regarding the timeline for the UI, and I would be grateful if the missing frontend is not the sole reason for disqualification. I am working hard to finish the complete picture and would love the opportunity to show it to you soon! 🚀 
+
 **Best Regards,** Pankaj Kumar
 
 # Sweet Shop Management System
