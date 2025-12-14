@@ -33,6 +33,7 @@ describe("Auth Endpoints", () => {
     // ---Happy Path---
     it("should register a new user successfully", async () => {
       const res = await request(app).post("/api/v1/users/register").send({
+        fullname: "Candy man",
         username: "Candyman",
         email: "candyman123@gmail.com",
         password: "password123",
@@ -50,6 +51,14 @@ describe("Auth Endpoints", () => {
     });
 
     // --- Validation Errors ---
+    it("should reject registration if fullname is missing", async () => {
+      const res = await request(app)
+        .post("/api/v1/users/register")
+        .send({ password: "password123" });
+
+      expect(res.statusCode).toEqual(400);
+    });
+
     it("should reject registration if username is missing", async () => {
       const res = await request(app)
         .post("/api/v1/users/register")
@@ -93,6 +102,7 @@ describe("Auth Endpoints", () => {
     it("should reject duplicate usernames", async () => {
       // 1. Create the first user
       await request(app).post("/api/v1/users/register").send({
+        fullname: "Twin User",
         username: "TwinUser",
         email: "twinuser123@gmail.com",
         password: "password123",
@@ -100,6 +110,7 @@ describe("Auth Endpoints", () => {
 
       // 2. Try to create the exact same user again
       const res = await request(app).post("/api/v1/users/register").send({
+        fullname: "Twin User",
         username: "TwinUser",
         email: "twinuser123@gmail.com",
         password: "newpassword",
@@ -111,6 +122,7 @@ describe("Auth Endpoints", () => {
     it("should reject duplicate email", async () => {
       // 1. Create the first user
       await request(app).post("/api/v1/users/register").send({
+        fullname: "Twin User1",
         username: "TwinUser1",
         email: "twinuser123@gmail.com",
         password: "password123",
@@ -118,6 +130,7 @@ describe("Auth Endpoints", () => {
 
       // 2. Try to create the exact same user again
       const res = await request(app).post("/api/v1/users/register").send({
+        fullname: "Twin User2",
         username: "TwinUser2",
         email: "twinuser123@gmail.com",
         password: "newpassword",
@@ -131,8 +144,8 @@ describe("Auth Endpoints", () => {
   describe("POST /api/v1/users/login", () => {
     // Setup: Create a user to log in with
     beforeEach(async () => {
-      // We rely on the Model's pre-save hook to hash this password!
       await User.create({
+        fullname: "Valid User",
         username: "validUser",
         email: "valid@example.com",
         password: "password123",
@@ -143,7 +156,7 @@ describe("Auth Endpoints", () => {
 
     it("should login successfully with valid EMAIL and password", async () => {
       const res = await request(app).post("/api/v1/users/login").send({
-        identifier: "valid@example.com", // Using generic 'identifier' field
+        identifier: "valid@example.com",
         password: "password123",
       });
 
@@ -181,7 +194,7 @@ describe("Auth Endpoints", () => {
         password: "password123",
       });
 
-      expect(res.statusCode).toEqual(401); // Keep it ambiguous for security
+      expect(res.statusCode).toEqual(401);
     });
 
     // --- Validation Errors ---
@@ -209,6 +222,7 @@ describe("Auth Endpoints", () => {
     beforeEach(async () => {
       // Create user
       const user = await User.create({
+        fullname: "logout user",
         username: "logoutUser",
         email: "logout@example.com",
         password: "password123",

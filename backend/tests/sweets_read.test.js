@@ -45,7 +45,7 @@ describe('Sweets Public Endpoints (GET)', () => {
         
         expect(res.statusCode).toEqual(200);
         expect(res.body).toHaveProperty('sweets');
-        expect(res.body.sweets.length).toBe(4); // We seeded 4 sweets
+        expect(res.body.sweets.length).toBe(4);
         expect(res.body).toHaveProperty('totalPages');
         expect(res.body).toHaveProperty('currentPage', 1);
     });
@@ -62,7 +62,7 @@ describe('Sweets Public Endpoints (GET)', () => {
         const res = await request(app).get(`${ENDPOINT}?category=Syrup`);
         
         expect(res.statusCode).toEqual(200);
-        expect(res.body.sweets.length).toBe(2); // Rasgulla + Gulab Jamun
+        expect(res.body.sweets.length).toBe(2);
     });
 
     it('should filter sweets by price range', async () => {

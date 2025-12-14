@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import Sweet from '../src/models/sweet.model.js';
 import User from '../src/models/user.model.js';
+
 // Import app dynamically to ensure mocks/env are loaded if needed
 const app = (await import('../src/app.js')).default;
 
@@ -34,6 +35,7 @@ describe('Restock Endpoint (Admin Protected)', () => {
     beforeEach(async () => {
         // 1. Create Admin
         const admin = await User.create({
+            fullname: 'Admin',
             username: 'adminUser',
             email: 'admin@test.com',
             password: 'password123',
@@ -43,6 +45,7 @@ describe('Restock Endpoint (Admin Protected)', () => {
 
         // 2. Create Normal User
         const user = await User.create({
+            fullname: 'Normal user',
             username: 'normalUser',
             email: 'user@test.com',
             password: 'password123',

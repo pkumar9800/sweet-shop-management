@@ -44,6 +44,7 @@ describe('Sweets Endpoints (Protected)', () => {
     beforeEach(async () => {
         // Create Admin
         const admin = await User.create({
+            fullname: 'Admin',
             username: 'adminUser', 
             email: 'admin@test.com', 
             password: 'password123',
@@ -53,6 +54,7 @@ describe('Sweets Endpoints (Protected)', () => {
 
         // Create Normal User
         const user = await User.create({
+            fullname: 'Normal User',
             username: 'normalUser', 
             email: 'user@test.com', 
             password: 'password123',

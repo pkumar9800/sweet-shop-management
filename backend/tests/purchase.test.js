@@ -6,7 +6,6 @@ import Sweet from '../src/models/sweet.model.js';
 import User from '../src/models/user.model.js';
 
 // --- 1. MOCK RAZORPAY ---
-// We assume we will create a wrapper 'src/utils/payment.js'
 const mockCreateOrder = jest.fn(() => Promise.resolve({
     id: 'order_mock_123',
     currency: 'INR',
@@ -49,6 +48,7 @@ describe('Purchase Endpoint (Protected)', () => {
     beforeEach(async () => {
         // 1. Create User
         const user = await User.create({
+            fullname: 'Buyer Seller',
             username: 'buyer',
             email: 'buyer@test.com',
             password: 'password123'
@@ -94,7 +94,7 @@ describe('Purchase Endpoint (Protected)', () => {
         const res = await request(app)
             .post(getUrl(sweetId))
             .set('Authorization', `Bearer ${userToken}`)
-            .send({ quantity: 100 }); // Stock is only 10
+            .send({ quantity: 100 });
 
         expect(res.statusCode).toEqual(400);
         expect(res.body.message).toMatch(/Insufficient stock/i);
