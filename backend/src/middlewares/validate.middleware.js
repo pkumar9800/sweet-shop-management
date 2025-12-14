@@ -1,6 +1,8 @@
 import { body, validationResult } from "express-validator";
 
 export const validateRegistration = [
+  // Validate full name
+  body("fullname").trim().notEmpty().withMessage("Full name is required"),
   // Validate Username
   body("username").trim().notEmpty().withMessage("Username is required"),
 
@@ -23,7 +25,6 @@ export const validateRegistration = [
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      // Return 400 to match the test expectation
       return res.status(400).json({
         message: "Validation Error",
         errors: errors.array(),

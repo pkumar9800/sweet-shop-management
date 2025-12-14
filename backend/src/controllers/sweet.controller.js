@@ -97,8 +97,7 @@ const restockSweet = async (req, res) => {
       return res.status(400).json({ message: 'Quantity must be a positive number' });
     }
 
-    // Find and Update (Atomic increment)
-    // { new: true } returns the updated document
+    // Find and Update
     const sweet = await Sweet.findByIdAndUpdate(
       id,
       { $inc: { quantity: quantity } }, 

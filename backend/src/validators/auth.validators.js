@@ -1,6 +1,13 @@
 import { body } from "express-validator";
 
 const registerRules = [
+  body("fullname")
+    .trim()
+    .notEmpty()
+    .withMessage("full name is required")
+    .isLength({ min: 3 })
+    .withMessage("full name must be at least 3 chars"),
+
   body("username")
     .trim()
     .notEmpty()
