@@ -1,0 +1,277 @@
+<html><head><meta charset="utf-8"/><title>Sweet Shop Project - Test Report</title><style type="text/css">:root {
+  --text-primary: #111;
+  --text-secondary: #4f4f4f;
+  --success: #006633;
+  --success-bright: #80ffbf;
+  --danger: #cc071e;
+  --danger-bright: #fbdfe0;
+  --warning: #995c00;
+  --warning-bright: #ffeea8;
+  --panel: #eee;
+  --border: #949494;
+  --disabled: #6b6b6b;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+}
+body {
+  padding: 2rem 1rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+#metadata-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.additional-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/** SUMMARY */
+#summary {
+  color: var(--text-primary);
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 0.5rem;
+  background: var(--panel);
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: var(--success);
+  border-left: 0.4rem solid var(--success);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: var(--danger);
+  border-left: 0.4rem solid var(--danger);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-pending {
+  color: var(--warning);
+  border-left: 0.4rem solid var(--warning);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-empty {
+  color: var(--disabled);
+  border-left: 0.4rem solid var(--disabled);
+  margin-bottom: 0.15rem;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: var(--success-bright);
+  color: var(--success);
+}
+.test-result.failed {
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.test-result.pending {
+  background-color: var(--warning-bright);
+  color: var(--warning);
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--danger);
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 1rem;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: var(--panel);
+  color: var(--text-secondary);
+  border: 0.15rem solid;
+  border-color: var(--panel);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  border-color: var(--border);
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 1rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+}
+.suite-info .suite-time.warn {
+  background-color: var(--danger);
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 1rem;
+  transform: rotate(180deg) translateY(0.15rem);
+}
+.suite-container[open] .suite-info:before {
+  transform: rotate(0deg) translateY(0.15rem);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--panel);
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><main class="jesthtml-content"><header><h1 id="title">Sweet Shop Project - Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2025-12-15 06:50:53</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (6)</div><div class="summary-passed ">6 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (41)</div><div class="summary-passed ">41 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\sweet-shop-management\backend\tests\smoke.test.js</div><div class="suite-time">1.932s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Jest ES6 smoke test</div><div class="test-title">should add numbers correctly</div><div class="test-status">passed</div><div class="test-duration">0.028s</div></div></div></div></details><details id="suite-2" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\sweet-shop-management\backend\tests\sweets_read.test.js</div><div class="suite-time warn">12.808s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Public Endpoints (GET)</div><div class="test-title">should retrieve all sweets (default pagination)</div><div class="test-status">passed</div><div class="test-duration">0.725s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Public Endpoints (GET)</div><div class="test-title">should search sweets by name (case insensitive)</div><div class="test-status">passed</div><div class="test-duration">0.104s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Public Endpoints (GET)</div><div class="test-title">should filter sweets by category</div><div class="test-status">passed</div><div class="test-duration">0.158s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Public Endpoints (GET)</div><div class="test-title">should filter sweets by price range</div><div class="test-status">passed</div><div class="test-duration">0.1s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Public Endpoints (GET)</div><div class="test-title">should paginate results correctly</div><div class="test-status">passed</div><div class="test-duration">0.115s</div></div></div></div></details><details id="suite-3" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\sweet-shop-management\backend\tests\purchase.test.js</div><div class="suite-time warn">14.966s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Purchase Endpoint (Protected)</div><div class="test-title">should successfully purchase a sweet and decrease stock</div><div class="test-status">passed</div><div class="test-duration">1.508s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Purchase Endpoint (Protected)</div><div class="test-title">should return 400 if requested quantity exceeds stock</div><div class="test-status">passed</div><div class="test-duration">0.667s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Purchase Endpoint (Protected)</div><div class="test-title">should return 400 if sweet is out of stock</div><div class="test-status">passed</div><div class="test-duration">0.607s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Purchase Endpoint (Protected)</div><div class="test-title">should return 404 if sweet does not exist</div><div class="test-status">passed</div><div class="test-duration">0.484s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Purchase Endpoint (Protected)</div><div class="test-title">should return 400 if quantity is invalid (negative or zero)</div><div class="test-status">passed</div><div class="test-duration">0.525s</div></div></div></div></details><details id="suite-4" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\sweet-shop-management\backend\tests\restock.test.js</div><div class="suite-time warn">16.485s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Restock Endpoint (Admin Protected)</div><div class="test-title">should allow Admin to increase stock</div><div class="test-status">passed</div><div class="test-duration">2.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Restock Endpoint (Admin Protected)</div><div class="test-title">should return 403 Forbidden if user is NOT admin</div><div class="test-status">passed</div><div class="test-duration">1.044s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Restock Endpoint (Admin Protected)</div><div class="test-title">should return 401 Unauthorized if no token is provided</div><div class="test-status">passed</div><div class="test-duration">1.011s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Restock Endpoint (Admin Protected)</div><div class="test-title">should return 400 if quantity is negative or zero</div><div class="test-status">passed</div><div class="test-duration">0.884s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Restock Endpoint (Admin Protected)</div><div class="test-title">should return 404 if sweet does not exist</div><div class="test-status">passed</div><div class="test-duration">0.572s</div></div></div></div></details><details id="suite-5" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\sweet-shop-management\backend\tests\auth.test.js</div><div class="suite-time warn">17.48s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/auth/register</div><div class="test-title">should register a new user successfully</div><div class="test-status">passed</div><div class="test-duration">1.599s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/auth/register</div><div class="test-title">should reject registration if fullname is missing</div><div class="test-status">passed</div><div class="test-duration">0.059s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/auth/register</div><div class="test-title">should reject registration if username is missing</div><div class="test-status">passed</div><div class="test-duration">0.068s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/auth/register</div><div class="test-title">should reject registration if email is missing</div><div class="test-status">passed</div><div class="test-duration">0.048s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/auth/register</div><div class="test-title">should reject registration if password is missing</div><div class="test-status">passed</div><div class="test-duration">0.058s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/auth/register</div><div class="test-title">should reject registration if all fields missing</div><div class="test-status">passed</div><div class="test-duration">0.058s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/auth/register</div><div class="test-title">should reject registration if password is too short</div><div class="test-status">passed</div><div class="test-duration">0.042s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/auth/register</div><div class="test-title">should reject duplicate usernames</div><div class="test-status">passed</div><div class="test-duration">0.648s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/auth/register</div><div class="test-title">should reject duplicate email</div><div class="test-status">passed</div><div class="test-duration">0.484s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/v1/users/login</div><div class="test-title">should login successfully with valid EMAIL and password</div><div class="test-status">passed</div><div class="test-duration">0.972s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/v1/users/login</div><div class="test-title">should login successfully with valid USERNAME and password</div><div class="test-status">passed</div><div class="test-duration">0.881s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/v1/users/login</div><div class="test-title">should reject login with incorrect password</div><div class="test-status">passed</div><div class="test-duration">0.57s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/v1/users/login</div><div class="test-title">should reject login with non-existent user</div><div class="test-status">passed</div><div class="test-duration">0.267s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/v1/users/login</div><div class="test-title">should reject login if identifier is missing</div><div class="test-status">passed</div><div class="test-duration">0.259s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/v1/users/login</div><div class="test-title">should reject login if password is missing</div><div class="test-status">passed</div><div class="test-duration">0.247s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/v1/users/logout</div><div class="test-title">should logout successfully and blacklist the token</div><div class="test-status">passed</div><div class="test-duration">0.23s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth Endpoints &gt; POST /api/v1/users/logout</div><div class="test-title">should return 200 even if no token is provided (Idempotent)</div><div class="test-status">passed</div><div class="test-duration">0.205s</div></div></div></div></details><details id="suite-6" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">D:\sweet-shop-management\backend\tests\sweets.test.js</div><div class="suite-time warn">17.684s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Endpoints (Protected) &gt; POST /api/v1/sweets</div><div class="test-title">should create a new sweet with image URL when Admin uploads file</div><div class="test-status">passed</div><div class="test-duration">2.014s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Endpoints (Protected) &gt; POST /api/v1/sweets</div><div class="test-title">should return 401 Unauthorized if no token is provided</div><div class="test-status">passed</div><div class="test-duration">1.031s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Endpoints (Protected) &gt; POST /api/v1/sweets</div><div class="test-title">should return 403 Forbidden if user is NOT admin</div><div class="test-status">passed</div><div class="test-duration">0.971s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Endpoints (Protected) &gt; POST /api/v1/sweets</div><div class="test-title">should return 400 if required fields are missing</div><div class="test-status">passed</div><div class="test-duration">0.928s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Endpoints (Protected) &gt; POST /api/v1/sweets</div><div class="test-title">should return 400/500 if price is invalid (string text)</div><div class="test-status">passed</div><div class="test-duration">0.629s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Endpoints (Protected) &gt; POST /api/v1/sweets</div><div class="test-title">should return 400/500 if quantity is negative</div><div class="test-status">passed</div><div class="test-duration">0.526s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Endpoints (Protected) &gt; POST /api/v1/sweets</div><div class="test-title">should return 400/500 if uploaded file is NOT an image (e.g., .txt)</div><div class="test-status">passed</div><div class="test-duration">0.479s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Sweets Endpoints (Protected) &gt; POST /api/v1/sweets</div><div class="test-title">should return 500 if Cloudinary upload fails</div><div class="test-status">passed</div><div class="test-duration">0.408s</div></div></div></div></details></main></body></html>
