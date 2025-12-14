@@ -13,6 +13,7 @@ const seedAdmin = async () => {
 
     // 2. If not, create the single admin
     const adminUser = new User({
+      fullname: process.env.ADMIN_FULLNAME,
       username: process.env.ADMIN_USERNAME,
       email: process.env.ADMIN_EMAIL,
       password: process.env.ADMIN_PASSWORD,
