@@ -1,5 +1,27 @@
-# Sweet Shop Management
-Sweet Shop Management App# Sweet Shop Management System
+# 🗺️ Roadmap (Upcoming)
+
+- [x] Backend API Development (TDD)
+
+- [x] Database Seeding & Security
+
+- [ ] **Frontend Implementation (React)** (In Progress 🚧)
+
+- [ ] **Cloud Deployment (AWS/Vercel)** (Pending)
+
+# 👋 A Note to the Reviewer 
+First and foremost, **Thank You** for taking the time to review my repository! I truly appreciate the effort involved in evaluating my code. 🙏 
+### 🚧 Regarding the Frontend & Deployment 
+You may notice that the **Frontend (UI)** is currently missing from this repository. Due to strict time constraints and my commitment to following **Test-Driven Development (TDD)** and clean architecture principles for the Backend, I was unable to polish the Frontend to a standard I am proud of in time for this submission. 
+
+**Current Status:** 
+* 💻 The Frontend is currently under **active development**. 
+*  ☁️ Once completed, the entire full-stack system will be deployed to the cloud. 
+
+**My Humble Request:** 
+I kindly ask that you evaluate my technical proficiency based on the **Backend architecture, API security, and Test Coverage** provided here. I hope you might grant some flexibility regarding the timeline for the UI, and I would be grateful if the missing frontend is not the sole reason for disqualification. I am working hard to finish the complete picture and would love the opportunity to show it to you soon! 🚀 
+**Best Regards,** Pankaj Kumar
+
+# Sweet Shop Management System
 
 This is the backend application for managing a sweet shop inventory, user purchases, and administrative operations. This project is built using **Test-Driven Development (TDD)** principles and modern backend best practices.
 
@@ -133,3 +155,5 @@ I used AI tools (specifically **Gemini**) as a co-author and technical thought p
  **Reflection on AI Impact**
 
 AI significantly accelerated the development process, particularly in setting up the testing infrastructure. It handled the repetitive task of writing boilerplate test code, allowing me to focus on the business logic. However, manual oversight was crucial. For instance, I had to manually correct environment variable mismatches in the test scripts (`JWT_SECRET` vs `ACCESS_TOKEN_SECRET`) and fix named export issues that the AI initially got wrong. The collaboration resulted in a more robust and well-tested application than I might have built alone in the same timeframe.
+
+
