@@ -1,7 +1,7 @@
 import Sweet from '../models/sweet.model.js';
 import { uploadImage } from '../utils/cloudinary.js';
 
-export const addSweet = async (req, res) => {
+const addSweet = async (req, res) => {
   try {
     const { name, category, price, quantity } = req.body;
 
@@ -28,7 +28,7 @@ export const addSweet = async (req, res) => {
       category,
       price,
       quantity,
-      imageUrl // Save the URL string to MongoDB
+      imageUrl
     });
 
     res.status(201).json(sweet);
@@ -39,7 +39,7 @@ export const addSweet = async (req, res) => {
   }
 };
 
-export const getAllSweets = async (req, res) => {
+const getAllSweets = async (req, res) => {
   try {
     // 1. Destructure Query Parameters
     const { page = 1, limit = 10, search, category, minPrice, maxPrice } = req.query;
@@ -66,9 +66,9 @@ export const getAllSweets = async (req, res) => {
 
     // 3. Execute Query with Pagination
     const sweets = await Sweet.find(query)
-        .limit(limit * 1) // Convert string to number
+        .limit(limit * 1)
         .skip((page - 1) * limit)
-        .sort({ createdAt: -1 }); // Newest first
+        .sort({ createdAt: -1 });
 
     // 4. Get Total Count for Frontend Pagination
     const count = await Sweet.countDocuments(query);
@@ -87,7 +87,7 @@ export const getAllSweets = async (req, res) => {
   }
 };
 
-export const restockSweet = async (req, res) => {
+const restockSweet = async (req, res) => {
   try {
     const { id } = req.params;
     const { quantity } = req.body;
@@ -119,3 +119,9 @@ export const restockSweet = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+export {
+  addSweet,
+  getAllSweets,
+  restockSweet
+}

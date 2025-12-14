@@ -2,7 +2,7 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import Blacklist from '../models/blacklist.model.js';
 
-export const registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -29,7 +29,7 @@ export const registerUser = async (req, res) => {
   }
 };
 
-export const loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
   try {
     const { identifier, password } = req.body;
 
@@ -39,13 +39,11 @@ export const loginUser = async (req, res) => {
     });
 
     // 2. Verify User existence & Password
-    // We use a generic message to prevent user enumeration
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     // 3. Generate JWT Token
-    // In a real app, use process.env.JWT_SECRET
     const token = user.generateAccessToken();
 
     // 4. Send Response
@@ -65,31 +63,27 @@ export const loginUser = async (req, res) => {
   }
 };
 
-export const logoutUser = async (req, res) => {
+const logoutUser = async (req, res) => {
   try {
     const authHeader = req.headers['authorization'];
     
     // 1. Check if token exists
     if (!authHeader) {
-      // If we are strictly secure, we expect a token to blacklist.
       return res.status(401).json({ message: 'No token provided' });
     }
 
-    const token = authHeader.split(' ')[1]; // Remove "Bearer " prefix
+    const token = authHeader.split(' ')[1]; 
 
     if (!token) {
         return res.status(401).json({ message: 'Invalid token format' });
     }
 
     // 2. Add to Blacklist
-    // We use .create which will throw if duplicate, so we catch errors
     await Blacklist.create({ token });
 
     res.status(200).json({ message: 'Logged out successfully' });
 
   } catch (error) {
-    // If token is already blacklisted (duplicate key error 11000), 
-    // we still consider them logged out.
     if (error.code === 11000) {
         return res.status(200).json({ message: 'Logged out successfully' });
     }
@@ -97,3 +91,9 @@ export const logoutUser = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+export {
+  registerUser,
+  loginUser,
+  logoutUser
+}

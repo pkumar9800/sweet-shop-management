@@ -22,6 +22,4 @@ const registerRules = [
     .withMessage("Password must be at least 6 chars"),
 ];
 
-
-
 export { registerRules };

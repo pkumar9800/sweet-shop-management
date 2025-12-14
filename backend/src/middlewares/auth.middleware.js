@@ -3,7 +3,7 @@ import User from '../models/user.model.js';
 import Blacklist from '../models/blacklist.model.js';
 
 // 1. Authenticate User (Verify Token & Check Blacklist)
-export const authenticate = async (req, res, next) => {
+const authenticate = async (req, res, next) => {
   try {
     const authHeader = req.headers['authorization'];
     if (!authHeader) return res.status(401).json({ message: 'Access denied. No token provided.' });
@@ -30,7 +30,7 @@ export const authenticate = async (req, res, next) => {
 };
 
 // 2. Authorize Admin (Check Role)
-export const isAdmin = (req, res, next) => {
+const isAdmin = (req, res, next) => {
   // req.user is already attached by 'authenticate' middleware
   if (req.user && req.user.role === 'admin') {
     next();
@@ -38,3 +38,8 @@ export const isAdmin = (req, res, next) => {
     res.status(403).json({ message: 'Access denied. Admins only.' });
   }
 };
+
+export {
+  authenticate,
+  isAdmin
+}
