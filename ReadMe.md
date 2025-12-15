@@ -1,26 +1,23 @@
-# 🗺️ Roadmap (Upcoming)
+# 👋 A Note to the Reviewer
 
-- [x] Backend API Development (TDD)
+First and foremost, **Thank You** for taking the time to review my repository. I sincerely appreciate the effort involved in evaluating my work. 🙏
 
-- [x] Database Seeding & Security
+#### 🚧 Project Scope & Focus
 
-- [ ] **Frontend Implementation (React)** (In Progress 🚧)
+For this submission, I have focused my efforts entirely on the **Backend Architecture**. While I am currently expanding my skills in frontend development, my core strength lies in server-side engineering. I chose to prioritize building a robust, thoroughly tested backend over delivering a full-stack application that might not meet the same quality standards on the client side.
 
-- [ ] **Cloud Deployment (AWS/Vercel)** (Pending)
+**I would be grateful if you could evaluate my technical proficiency based on:**
 
-# 👋 A Note to the Reviewer 
-First and foremost, **Thank You** for taking the time to review my repository! I truly appreciate the effort involved in evaluating my code. 🙏 
-### 🚧 Regarding the Frontend & Deployment 
-You may notice that the **Frontend (UI)** is currently missing from this repository. Due to strict time constraints and my commitment to following **Test-Driven Development (TDD)** and clean architecture principles for the Backend, I was unable to polish the Frontend to a standard I am proud of in time for this submission. 
+-   **Test-Driven Development (TDD):** My commitment to writing reliable code with high test coverage.
+    
+-   **Clean Architecture:** The organization of Controllers, Services, and Models to ensure scalability.
+    
+-   **Security & Best Practices:** The implementation of secure authentication and data validation.
+    
 
-**Current Status:** 
-* 💻 The Frontend is currently under **active development**. 
-*  ☁️ Once completed, the entire full-stack system will be deployed to the cloud. 
+I hope this repository demonstrates my dedication to writing clean, maintainable, and secure backend code. Thank you again for your consideration! 🚀
 
-**My Humble Request:** 
-I kindly ask that you evaluate my technical proficiency based on the **Backend architecture, API security, and Test Coverage** provided here. I hope you might grant some flexibility regarding the timeline for the UI, and I would be grateful if the missing frontend is not the sole reason for disqualification. I am working hard to finish the complete picture and would love the opportunity to show it to you soon! 🚀 
-
-**Best Regards,** Pankaj Kumar
+**Best Regards,** **Pankaj Kumar**
 
 # Sweet Shop Management System
 
@@ -79,15 +76,18 @@ This system allows users to browse sweets, search by category/price, and purchas
 	```env
 	PORT=5000
 	MONGO_URI = your_mongodb_connection_string
-	
-	JWT_SECRET = your_secure_jwt_secret
-	
+	CORS_ORIGIN =  
+
+	--------cloudinary service-------------
 	CLOUDINARY_CLOUD_NAME = your_cloud_name
 	CLOUDINARY_API_KEY = your_api_key
 	CLOUDINARY_API_SECRET = your_api_secret
 	
+	---------Razorpay service optional-----
 	RAZORPAY_KEY_ID = your_razorpay_key_id
 	RAZORPAY_KEY_SECRET = your_razorpay_key_secret
+	
+	---------For admin seeding-------------
 	
 	ADMIN_FULLNAME =
 	ADMIN_USERNAME = 
@@ -157,4 +157,4 @@ I used AI tools (specifically **Gemini**) as a co-author and technical thought p
 
 AI significantly accelerated the development process, particularly in setting up the testing infrastructure. It handled the repetitive task of writing boilerplate test code, allowing me to focus on the business logic. However, manual oversight was crucial. For instance, I had to manually correct environment variable mismatches in the test scripts (`JWT_SECRET` vs `ACCESS_TOKEN_SECRET`) and fix named export issues that the AI initially got wrong. The collaboration resulted in a more robust and well-tested application than I might have built alone in the same timeframe.
 
-
+---
