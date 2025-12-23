@@ -24,6 +24,12 @@ const sweetSchema = new mongoose.Schema({
   imageUrl: { 
     type: String,
     default: '' 
+  },
+  discount: {
+    type: Number,
+    default: 0,
+    min: [0, 'Discount cannot be negative'],
+    max: [99, 'Discount cannot exceed 99%']
   }
 }, { timestamps: true });
 
