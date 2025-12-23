@@ -3,7 +3,7 @@ import { uploadImage } from '../utils/cloudinary.js';
 
 const addSweet = async (req, res) => {
   try {
-    const { name, category, price, quantity } = req.body;
+    const { name, category, price, quantity, discount } = req.body;
 
     // 1. Validation
     if (!name || !category || !price || !quantity) {
@@ -28,6 +28,7 @@ const addSweet = async (req, res) => {
       category,
       price,
       quantity,
+      discount: discount || 0,
       imageUrl
     });
 
